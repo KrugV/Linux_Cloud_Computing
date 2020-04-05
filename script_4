@@ -1,0 +1,73 @@
+Соединяемся с удаленным сервером
+
+(base) max@max-System-Product-Name:~$ cd /home/max/Загрузки
+(base) max@max-System-Product-Name:~/Загрузки$ chmod 400 linux_cloud_course_vk.pem
+(base) max@max-System-Product-Name:~/Загрузки$ ssh -i "linux_cloud_course_vk.pem" ubuntu@ec2-18-224-179-33.us-east-2.compute.amazonaws.com
+
+1. Создать пользователя user_new и предоставить ему права на редактирование файла с программой, выводящей на экран Hello, world!
+
+ubuntu@ip-172-31-33-37:~$ vim pivet.py
+ubuntu@ip-172-31-33-37:~$ cat pivet.py
+print("Hello, world")
+
+ubuntu@ip-172-31-33-37:~$ sudo useradd -m -s /bin/bash user_new
+ubuntu@ip-172-31-33-37:~$ ls /home/
+ubuntu  user_new
+ubuntu@ip-172-31-33-37:~$ sudo passwd user_new
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+
+ubuntu@ip-172-31-33-37:~$ su user_new
+Password: 
+user_new@ip-172-31-33-37:/home/ubuntu$ ls -l pivet.py
+-rw-rw-r-- 1 ubuntu ubuntu 22 Apr  5 10:17 pivet.py
+user_new@ip-172-31-33-37:/home/ubuntu$ exit
+exit
+
+ubuntu@ip-172-31-33-37:~$ chmod o+w pivet.py
+ubuntu@ip-172-31-33-37:~$ ls -l
+total 4
+-rw-rw-rw- 1 ubuntu ubuntu 22 Apr  5 10:17 pivet.py
+
+2. Зайти под юзером user_new и с помощью редактора Vim поменять фразу в скрипте из пункта 1 на любую другую.
+
+ubuntu@ip-172-31-33-37:~$ su user_new
+Password: 
+user_new@ip-172-31-33-37:/home/ubuntu$ vim pivet.py
+user_new@ip-172-31-33-37:/home/ubuntu$ cat pivet.py
+print("Hello, world - world")
+
+3.* Под юзером user_new зайти в его домашнюю директорию и создать программу на Python, 
+выводящую в консоль цифры от 1 до 10 включительно с интервалом в 1 секунду.
+
+ubuntu@ip-172-31-33-37:~$ su user_new
+Password: 
+user_new@ip-172-31-33-37:/home/ubuntu$ cd /home/user_new
+user_new@ip-172-31-33-37:~$ vim test.py
+user_new@ip-172-31-33-37:~$ ls
+test.py
+user_new@ip-172-31-33-37:~$ chmod +x test.py
+user_new@ip-172-31-33-37:~$ ./test.py
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+
+
+
+
+
+
+
+
+
+
