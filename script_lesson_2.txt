@@ -1,0 +1,60 @@
+Подключаемся к ubuntu в облако AWS
+
+(base) max@max-System-Product-Name:~$ cd /home/max/Загрузки
+(base) max@max-System-Product-Name:~/Загрузки$ chmod 400 linux_cloud_course_vk.pem
+(base) max@max-System-Product-Name:~/Загрузки$ ssh -i "linux_cloud_course_vk.pem" ubuntu@ec2-13-58-229-161.us-east-2.compute.amazonaws.com
+
+1. Создать каталоги first и second в домашней директории, а в них — текстовые файлы first.py и second.py, 
+содержащие программы, выводящие на экран числа 1 и 2 соответственно.
+
+ubuntu@ip-172-31-29-195:/$ cd /home
+ubuntu@ip-172-31-29-195:/home$ sudo mkdir first
+ubuntu@ip-172-31-29-195:/home$ sudo mkdir second
+ubuntu@ip-172-31-29-195:/home/first$ sudo -s
+root@ip-172-31-29-195:/home# cd /home/first
+root@ip-172-31-29-195:/home/first# echo > first.py
+root@ip-172-31-29-195:/home/first# ls
+first.py
+root@ip-172-31-29-195:/home/first# echo "print(1)" > first.py
+root@ip-172-31-29-195:/home/first# less first.py
+root@ip-172-31-29-195:/home/first# cd /home/second
+root@ip-172-31-29-195:/home/second#
+root@ip-172-31-29-195:/home/second# echo > second.py
+root@ip-172-31-29-195:/home/second# ls
+second.py
+root@ip-172-31-29-195:/home/second# echo "print(2)" > second.py
+root@ip-172-31-29-195:/home/second# less second.py
+
+2. Переместите файл second.py в папку first.
+
+root@ip-172-31-29-195:/home/second# mv second.py /home/first
+root@ip-172-31-29-195:/home/second# cd /home/first
+root@ip-172-31-29-195:/home/first# ls
+first.py  second.py
+
+3. Удалите папку second.
+
+root@ip-172-31-29-195:/home/first# cd /home
+root@ip-172-31-29-195:/home# rm -r second
+root@ip-172-31-29-195:/home# ls
+first  ubuntu
+
+4. Переименуйте папку first в first_second.
+
+root@ip-172-31-29-195:/home# mv first first_second
+root@ip-172-31-29-195:/home# ls
+first_second  ubuntu
+
+5. Удалите папку first_second вместе с содержимым.
+
+root@ip-172-31-29-195:/home# rm -r first_second
+root@ip-172-31-29-195:/home# ls
+ubuntu
+
+
+
+
+
+
+
+
