@@ -1,0 +1,46 @@
+Подключаемся к удаленному серверу
+
+(base) max@max-System-Product-Name:~$ cd /home/max/Загрузки
+(base) max@max-System-Product-Name:~/Загрузки$ chmod 400 linux_cloud_course_vk.pem
+(base) max@max-System-Product-Name:~/Загрузки$ ssh -i "linux_cloud_course_vk.pem" ubuntu@ec2-3-134-79-66.us-east-2.compute.amazonaws.com
+
+1. Запустить htop и посмотреть, сколько процессоров и оперативной памяти есть на сервере.
+
+ubuntu@ip-172-31-44-100:~$ sudo apt install htop
+ubuntu@ip-172-31-44-100:~$ htop
+
+
+2. Найти все программы с расширением .py.
+
+ubuntu@ip-172-31-44-100:~$ find *.py
+test.py
+
+3. * Создать и запустить программу на Python, выводящую числа от 0 до 100 включительно.
+
+ubuntu@ip-172-31-44-100:~$ vim test2.py
+ubuntu@ip-172-31-44-100:~$ chmod +x test2.py
+ubuntu@ip-172-31-44-100:~$ ./test2.py.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+
+Запустить htop во время выполнения программы и найти выполняемую программу в списке процессов, используя поиск по ключевому слову python (использовать средства поиска htop).
+
+ubuntu@ip-172-31-44-100:~$ htop
+
+
+
+
+
+
