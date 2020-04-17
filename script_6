@@ -1,0 +1,174 @@
+Подключаемся к инстансу
+
+(base) max@max-System-Product-Name:~$ cd /home/max/Загрузки
+(base) max@max-System-Product-Name:~/Загрузки$ chmod 400 linux_cloud_course_vk.pem
+(base) max@max-System-Product-Name:~/Загрузки$ ssh -i "linux_cloud_course_vk.pem" ubuntu@ec2-18-216-104-48.us-east-2.compute.amazonaws.com
+
+
+3. Задание
+
+ubuntu@ip-172-31-41-249:~$ lsblk
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+loop0     7:0    0 89.1M  1 loop /snap/core/8268
+loop1     7:1    0   18M  1 loop /snap/amazon-ssm-agent/1480
+xvda    202:0    0    8G  0 disk 
+└─xvda1 202:1    0    8G  0 part /
+xvdf    202:80   0   10G  0 disk 
+
+ubuntu@ip-172-31-41-249:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            481M     0  481M   0% /dev
+tmpfs            99M  752K   98M   1% /run
+/dev/xvda1      7.7G  1.1G  6.7G  14% /
+tmpfs           492M     0  492M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           492M     0  492M   0% /sys/fs/cgroup
+/dev/loop0       90M   90M     0 100% /snap/core/8268
+/dev/loop1       18M   18M     0 100% /snap/amazon-ssm-agent/1480
+tmpfs            99M     0   99M   0% /run/user/1000
+
+
+ubuntu@ip-172-31-41-249:~$ cat /etc/fstab
+LABEL=cloudimg-rootfs	/	 ext4	defaults,discard	0 0
+ubuntu@ip-172-31-41-249:~$ sudo file -s /dev/xvdf
+/dev/xvdf: data
+
+ubuntu@ip-172-31-41-249:~$ sudo mkfs -t xfs /dev/xvdf
+meta-data=/dev/xvdf              isize=512    agcount=4, agsize=655360 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=0, rmapbt=0, reflink=0
+data     =                       bsize=4096   blocks=2621440, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+
+
+ubuntu@ip-172-31-41-249:~$ sudo file -s /dev/xvdf
+/dev/xvdf: SGI XFS filesystem data (blksz 4096, inosz 512, v2 dirs)
+
+
+ubuntu@ip-172-31-41-249:~$ sudo mkdir /data
+ubuntu@ip-172-31-41-249:~$ ls / | grep data
+data
+
+ubuntu@ip-172-31-41-249:~$ sudo mount /dev/xvdf /data/
+ubuntu@ip-172-31-41-249:~$ ls -l /data/
+total 0
+
+ubuntu@ip-172-31-41-249:~$ ls -l / | grep data
+drwxr-xr-x   2 root root     6 Apr 15 10:26 data
+
+ubuntu@ip-172-31-41-249:~$ sudo  chmod o+w /data
+ubuntu@ip-172-31-41-249:~$ ls -l / | grep data
+drwxr-xrwx   2 root root     6 Apr 15 10:26 data
+
+ubuntu@ip-172-31-41-249:~$ cd /data
+ubuntu@ip-172-31-41-249:/data$ echo test > test.txt
+ubuntu@ip-172-31-41-249:/data$ ls -l
+total 4
+-rw-rw-r-- 1 ubuntu ubuntu 5 Apr 15 10:36 test.txt
+ubuntu@ip-172-31-41-249:/data$ exit
+
+Перезагружаем 1 инстанс
+
+Открепляем диск от первого и прекрепляем ко второму в AWS
+
+
+
+
+
+Подключаемся ко второму инстансу
+
+(base) max@max-System-Product-Name:~/Загрузки$ cd /home/max/Загрузки
+(base) max@max-System-Product-Name:~/Загрузки$ chmod 400 linux_cloud_course_vk.pem
+(base) max@max-System-Product-Name:~/Загрузки$ ssh -i "linux_cloud_course_vk.pem" ubuntu@ec2-52-15-106-227.us-east-2.compute.amazonaws.com
+
+подключаем ранне использованный диск
+
+ubuntu@ip-172-31-32-92:~$ lsblk
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+loop0     7:0    0   18M  1 loop /snap/amazon-ssm-agent/1480
+loop1     7:1    0 89.1M  1 loop /snap/core/8268
+xvda    202:0    0    8G  0 disk 
+└─xvda1 202:1    0    8G  0 part /
+xvdf    202:80   0   10G  0 disk 
+
+ubuntu@ip-172-31-32-92:~$ sudo mkdir /data
+ubuntu@ip-172-31-32-92:~$ sudo mount /dev/xvdf /data/
+ubuntu@ip-172-31-32-92:~$ ls -l
+total 0
+
+ubuntu@ip-172-31-32-92:~$ cd /data
+ubuntu@ip-172-31-32-92:/data$ ls
+test.txt
+ubuntu@ip-172-31-32-92:/data$ cat test.txt
+test
+test2
+
+ubuntu@ip-172-31-32-92:/data$ vim test.txt
+
+ubuntu@ip-172-31-32-92:/data$ exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
