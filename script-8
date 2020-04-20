@@ -1,0 +1,92 @@
+
+1. Вывести на экран 3 раза имя пользователя, от которого запускается команда.
+
+
+(base) max@max-System-Product-Name:~$ for name in {1..3}
+> do
+> whoami
+> done
+max
+max
+max
+
+
+2. Вывести с помощью цикла while все четные числа от 0 до 100 включительно.
+
+(base) max@max-System-Product-Name:~$ y=0
+(base) max@max-System-Product-Name:~$ while [ $y -lt 101 ]
+> do
+> echo $y
+> y=$(( $y + 2 ))
+> done
+0
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+22
+24
+26
+28
+30
+32
+34
+36
+38
+40
+42
+44
+46
+48
+50
+52
+54
+56
+58
+60
+62
+64
+66
+68
+70
+72
+74
+76
+78
+80
+82
+84
+86
+88
+90
+92
+94
+96
+98
+100
+
+3. Создать с помощью nano файл test.txt. Настроить автоматический бэкап этого файла раз в 10 минут в файл с названием test.txt.bak с использованием cron.
+
+(base) max@max-System-Product-Name:~$ vim test.txt
+
+(base) max@max-System-Product-Name:~$ crontab -e
+crontab: installing new crontab
+
+
+
+
+
+
+
+
+
+
+
+
+
