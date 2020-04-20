@@ -1,0 +1,37 @@
+Подключаемся к инстансу
+
+(base) max@max-System-Product-Name:~$ cd /home/max/Загрузки
+(base) max@max-System-Product-Name:~/Загрузки$ chmod 400 linux_cloud_course_vk.pem
+(base) max@max-System-Product-Name:~/Загрузки$ ssh -i "linux_cloud_course_vk.pem" ubuntu@ec2-18-222-25-236.us-east-2.compute.amazonaws.com
+
+
+1. Выбрать из домашней директории пользователя ubuntu файлы с расширением .py, название которых начинается на букву t.
+
+ubuntu@ip-172-31-26-30:~$ ls | grep 't*.py'
+test.py
+test_1.py
+
+2. Из всех файлов с расширением .py, расположенных в домашней директории пользователя ubuntu, выбрать строки, содержащие команду print, и вывести их на экран.
+
+ubuntu@ip-172-31-26-30:~$ ls
+test.py  test_1.py
+
+ubuntu@ip-172-31-26-30:~$ cat *.py
+test1
+test2
+test3
+iest4
+print ("hello!")
+
+ubuntu@ip-172-31-26-30:~$ cat *.py | grep print
+print ("hello!")
+
+3. Из результатов работы команды uptime выведите число дней, которое система работает без перезагрузки.
+
+ubuntu@ip-172-31-26-30:~$ uptime
+ 17:17:45 up  1:25,  1 user,  load average: 0.00, 0.00, 0.00
+ubuntu@ip-172-31-26-30:~$ uptime | sed 's/^.* up \+\(.\+\), \+[0-9]\+ \+user.*/\1/'
+1:25
+
+
+
